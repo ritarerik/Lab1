@@ -1,9 +1,14 @@
+import java.util.Vector;
 
 public class ZFunction {
 
-	public static String run() {
+	public static Vector<Integer> run(String S) {
 		
-		return "Z-function";
+		Vector<Integer> Z = new Vector<>(); 
+		
+
+		
+		return Z;
 		
 	}
 	

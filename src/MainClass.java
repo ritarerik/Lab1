@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Vector;
 
 public class MainClass {
 	
@@ -24,24 +25,40 @@ public class MainClass {
 	        String res = "";
 	        
 	        switch(num) {	        
-	        case 1:
-	        	
-	        	res = "\n" + ZFunction.run() + "\n";
-	        	break;
-	        	
-	        case 2:
-	        	
-	        	res = "\n" + KMP.run() + "\n";
-	        	break;
-	        	
-	        case 3:
-	        	
-	        	res = "\n" + RK.run() + "\n";
-	        	break;
-	        	
-	        default:
-	        	exit = true;
-	        	break;
+	        
+		        case 1:
+		        	
+		        	in = new Scanner(System.in);				
+					System.out.print("\n>> Строка > ");				
+			        String S = in.nextLine();	        	
+		        	
+		        	Vector<Integer> Z =  ZFunction.run(S);
+		        	
+		        	System.out.print("\n>> Результат > ");			        
+		        	res += "[";
+			        for (int i = 0; i < Z.size(); i++) {			        	
+			        	res += Z.get(i);			        			
+			        	if (i < Z.size() - 1) {
+			        		res += ", "; 
+			        	}			        	
+			        }
+			        res += "]\n\n";
+		        	
+		        	break;
+		        	
+		        case 2:
+		        	
+		        	res = "\n" + KMP.run() + "\n";
+		        	break;
+		        	
+		        case 3:
+		        	
+		        	res = "\n" + RK.run() + "\n";
+		        	break;
+		        	
+		        default:
+		        	exit = true;
+		        	break;
 	        	
 	        }
 	        
