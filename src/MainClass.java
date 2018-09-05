@@ -32,13 +32,13 @@ public class MainClass {
 					System.out.print("\n>> Строка > ");				
 			        String S = in.nextLine();	        	
 		        	
-		        	Vector<Integer> Z =  ZFunction.run(S);
+		        	int[] Z =  ZFunction.run(S);
 		        	
 		        	System.out.print("\n>> Результат > ");			        
 		        	res += "[";
-			        for (int i = 0; i < Z.size(); i++) {			        	
-			        	res += Z.get(i);			        			
-			        	if (i < Z.size() - 1) {
+			        for (int i = 0; i < Z.length; i++) {			        	
+			        	res += Z[i];			        			
+			        	if (i < Z.length - 1) {
 			        		res += ", "; 
 			        	}			        	
 			        }
