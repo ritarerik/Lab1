@@ -17,24 +17,26 @@ public class MainClass {
 			System.out.println("> ______________________________________");
 			System.out.println("> Выход > 4");
 			
-			Scanner in = new Scanner(System.in);
-			
+			//-----------------------------------------------------------//
+			Scanner in = new Scanner(System.in);			
 			System.out.print("\n>> ");
 			
+			//-----------------------------------------------------------//
 	        int num = in.nextInt();
 	        String res = "";
 	        
-	        switch(num) {	        
+	        //-----------------------------------------------------------//
+	        in = new Scanner(System.in);				
+			System.out.print("\n>> Строка > ");				
+	        String S = in.nextLine();
 	        
+	        //-----------------------------------------------------------//
+	        switch(num) {	        
+	        	//-----------------------------------------------------------//
 		        case 1:
 		        	
-		        	in = new Scanner(System.in);				
-					System.out.print("\n>> Строка > ");				
-			        String S = in.nextLine();	        	
-		        	
 		        	int[] Z =  ZFunction.run(S);
-		        	
-		        	System.out.print("\n>> Результат > ");			        
+		        				        
 		        	res += "[";
 			        for (int i = 0; i < Z.length; i++) {			        	
 			        	res += Z[i];			        			
@@ -45,15 +47,28 @@ public class MainClass {
 			        res += "]\n\n";
 		        	
 		        	break;
-		        	
+		        //-----------------------------------------------------------//	
 		        case 2:
 		        	
 		        	res = "\n" + KMP.run() + "\n";
 		        	break;
-		        	
+		       	//-----------------------------------------------------------//	
 		        case 3:
 		        	
-		        	res = "\n" + RK.run() + "\n";
+		        	in = new Scanner(System.in);				
+					System.out.print("\n>> Подстрока > ");				
+			        String T = in.nextLine();
+		        	
+		        	Vector<Integer> H = new Vector<>();
+			        H = RK.run(S, T);
+			        res += "[";
+			        for (int i = 0; i < H.size(); i++) {			        	
+			        	res += H.get(i);			        			
+			        	if (i < H.size() - 1) {
+			        		res += ", "; 
+			        	}			        	
+			        }
+			        res += "]\n\n";
 		        	break;
 		        	
 		        default:
@@ -62,6 +77,8 @@ public class MainClass {
 	        	
 	        }
 	        
+	        //-----------------------------------------------------------//
+        	System.out.print("\n>> Результат > ");
 	        System.out.println(res);
 	        
 		}
