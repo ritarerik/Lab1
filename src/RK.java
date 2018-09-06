@@ -10,46 +10,48 @@ public class RK {
 		
 		int len = T.length();
 		
-		String text = S.substring(0, len);
+		String text = "";
+		int textHash = 0;
+		int subHash = getHash(T, 0);		
 		
-		int subHash = getHash(T);
-		int textHash = getHash(text);
-		
-		for (int i = 0; i < S.length() - len; i++) {
+		for (int i = -1; i < S.length() - len; i++) {
 			
-			if (subHash == textHash) {
-				
-				// посимвольное сравнение
+			text = S.substring(i + 1, i + len + 1);
+			textHash = getHash(text, 0);
+			
+			if (subHash == textHash) {				
 				boolean equal = true;
-				for (int j = 0; j < len; j++) {					
-					if (T.charAt(j) != text.charAt(j)) {
-						equal = false;
-						break;
-					} 					
-				}
-				
-				if (equal) {
-					res.add(i);
-				}
-				
+				if (!T.equals(text)) {
+					equal = false;
+					break;
+				}				
+				if (equal) res.add(i + 1);				
 			}
-			
+
 		}
 		
 		return res;
 		
 	}
 	
-	private static int getHash(String s) {
+	private static int getHash(String s, int prevHash) {
 		
-		int n = 0;		
-		int q = 1;
+		int q = 65713; // простое число		
+		int hash = 0;		
 		
-		for (int i = 0; i < s.length(); i++) {			
-			n += ((int) s.charAt(i)) + Math.pow(2, s.length() - i - 1);			
-		}
+//		if (prevHash == 0) { // вычисляем первый хэш
+			
+			for (int i = 0; i < s.length(); i++) {			
+				hash += (((int) s.charAt(i)) * Math.pow(2, s.length() - i - 1)) % q;			
+			}
+			
+//		} else { // вычисляем последующие окна
+//			
+//			hash = prevHash - (int)s.charAt(0) + ;
+//			
+//		}
 		
-		return n % q;
+		return hash;
 		
 	}
 	
