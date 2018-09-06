@@ -22,9 +22,15 @@ public class MainClass {
 			System.out.print("\n>> ");
 			
 			//-----------------------------------------------------------//
-	        int num = in.nextInt();
-	        String res = "";
 	        
+			int num = 0;
+			String res = "";
+			try {
+				num = in.nextInt();		        
+	        } catch (Exception e) {
+	        	continue;
+	        }
+			
 	        //-----------------------------------------------------------//
 	        in = new Scanner(System.in);				
 			System.out.print("\n>> Строка > ");				
