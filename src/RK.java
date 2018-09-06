@@ -36,7 +36,7 @@ public class RK {
 	
 	private static int getHash(String S, String sub, int prevHash, int index) {
 		
-		int q = 65713; // простое число		
+		int q = 13; // простое число	( 65713	)
 		int hash = 0;		
 		
 		if (prevHash == 0) { // вычисляем первый хэш
