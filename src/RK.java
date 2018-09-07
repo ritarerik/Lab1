@@ -12,12 +12,12 @@ public class RK {
 		
 		String text = "";
 		int textHash = 0;
-		int subHash = getHash(S, T, 0, 0);		
+		int subHash = getHash(S, T, 0, 0, 0);		
 		
 		for (int i = -1; i < S.length() - len; i++) {
 			
 			text = S.substring(i + 1, i + len + 1);
-			textHash = getHash(S, text, textHash, i + len);
+			textHash = getHash(S, text, textHash, i, i + len);
 			
 			if (subHash == textHash) {				
 				boolean equal = true;
@@ -34,9 +34,10 @@ public class RK {
 		
 	}
 	
-	private static int getHash(String S, String sub, int prevHash, int index) {
+	private static int getHash(String S, String sub, int prevHash, int i_1, int i_2) {
 		
-		int q = 13; // простое число	( 65713	)
+		int d = 52;
+		int q = 65713; // простое число	( 65713	)
 		int hash = 0;		
 		
 		if (prevHash == 0) { // вычисляем первый хэш
@@ -47,7 +48,11 @@ public class RK {
 			
 		} else { // вычисляем последующие окна
 			
-			hash = prevHash - (int)sub.charAt(0)%q + (int)S.charAt(index)%q;
+			char c = S.charAt(i_1);
+			char c_ = S.charAt(i_2);
+			//hash = prevHash - (int)S.charAt(i_1) + (int)S.charAt(i_2);
+			
+			hash = (int)((prevHash - (int)S.charAt(i_1)) + (int)S.charAt(i_2) * Math.pow(2, sub.length() - 1)) % q;
 			
 		}
 		
