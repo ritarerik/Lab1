@@ -34,12 +34,11 @@ public class MainClass {
 	        //-----------------------------------------------------------//
 	        in = new Scanner(System.in);				
 			System.out.print("\n>> Строка > ");				
-	        String S = in.nextLine();
+	        String S = in.nextLine().toLowerCase();
 	        
 	        //-----------------------------------------------------------//
-	        switch(num) {	        
-	        	//-----------------------------------------------------------//
-		        case 1:
+	        switch(num) {     
+	        	case 1:
 		        	
 		        	int[] Z =  ZFunction.run(S);
 		        				        
@@ -53,27 +52,36 @@ public class MainClass {
 			        res += "]\n\n";
 		        	
 		        	break;
+		        	
 		        //-----------------------------------------------------------//	
 		        case 2:
 		        	
-		        	res = "\n" + KMP.run() + "\n";
+		        	res = "\n" + KMP.run(S) + "\n";
 		        	break;
+		        	
 		       	//-----------------------------------------------------------//	
 		        case 3:
 		        	
 		        	in = new Scanner(System.in);				
 					System.out.print("\n>> Подстрока > ");				
-			        String T = in.nextLine();
+			        String T = in.nextLine().toLowerCase();
 		        	
 		        	Vector<Integer> H = new Vector<>();
 			        H = RK.run(S, T);
 			        res += "[";
-			        for (int i = 0; i < H.size(); i++) {			        	
-			        	res += H.get(i);			        			
-			        	if (i < H.size() - 1) {
-			        		res += ", "; 
+			        for (int i = 0; i < H.size(); i++) {
+			        	
+			        	if (H.get(i) != -1) {			        	
+				        	res += H.get(i);			        			
+				        	if (i < H.size() - 1) {
+				        		res += ", "; 
+				        	}
+			        	} else {
+			        		res += " совпадений не найдено ";
 			        	}			        	
+			        	
 			        }
+			        
 			        res += "]\n\n";
 		        	break;
 		        	
