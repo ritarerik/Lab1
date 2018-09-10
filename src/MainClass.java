@@ -7,8 +7,7 @@ public class MainClass {
 	public static void main(String args[])
 	{
 		
-		boolean exit = false;
-		
+		boolean exit = false;		
 		while (!exit) {
 			
 			System.out.println("> Z-функция > 1");
@@ -32,9 +31,11 @@ public class MainClass {
 	        }
 			
 	        //-----------------------------------------------------------//
-	        in = new Scanner(System.in);				
-			System.out.print("\n>> Строка > ");				
+			System.out.print("\n>> Строка > ");
+			in = new Scanner(System.in);
 	        String S = in.nextLine().toLowerCase();
+	        String T = "";
+	        Vector<Integer> V = new Vector<>();
 	        
 	        //-----------------------------------------------------------//
 	        switch(num) {     
@@ -45,9 +46,7 @@ public class MainClass {
 		        	res += "[";
 			        for (int i = 0; i < Z.length; i++) {			        	
 			        	res += Z[i];			        			
-			        	if (i < Z.length - 1) {
-			        		res += ", "; 
-			        	}			        	
+			        	if (i < Z.length - 1) res += ", "; 
 			        }
 			        res += "]\n\n";
 		        	
@@ -56,7 +55,26 @@ public class MainClass {
 		        //-----------------------------------------------------------//	
 		        case 2:
 		        	
-		        	res = "\n" + KMP.run(S) + "\n";
+		        	in = new Scanner(System.in);				
+					System.out.print("\n>> Подстрока > ");				
+			        T = in.nextLine().toLowerCase();
+			        
+			        if (S.contains("¶")) {
+			        	System.out.println(">> Строка содержит запрещённый символ ¶");
+			        } else if (T.contains("¶")) {
+			        	System.out.println(">> Подстрока содержит запрещённый символ ¶");
+			        } else {
+				        V = new Vector<>();
+				        V = KMP.run(S, T);
+				        res += "[";
+				        for (int i = 0; i < V.size(); i++) {
+				        	if (V.get(i) != -1) {			        	
+					        	res += V.get(i);			        			
+					        	if (i < V.size() - 1) res += ", "; 
+				        	} else res += " совпадений не найдено ";
+				        }				        
+				        res += "]\n\n";				        
+			        }
 		        	break;
 		        	
 		       	//-----------------------------------------------------------//	
@@ -64,22 +82,16 @@ public class MainClass {
 		        	
 		        	in = new Scanner(System.in);				
 					System.out.print("\n>> Подстрока > ");				
-			        String T = in.nextLine().toLowerCase();
+			        T = in.nextLine().toLowerCase();
 		        	
-		        	Vector<Integer> H = new Vector<>();
-			        H = RK.run(S, T);
+		        	V = new Vector<>();
+			        V = RK.run(S, T);
 			        res += "[";
-			        for (int i = 0; i < H.size(); i++) {
-			        	
-			        	if (H.get(i) != -1) {			        	
-				        	res += H.get(i);			        			
-				        	if (i < H.size() - 1) {
-				        		res += ", "; 
-				        	}
-			        	} else {
-			        		res += " совпадений не найдено ";
-			        	}			        	
-			        	
+			        for (int i = 0; i < V.size(); i++) {
+			        	if (V.get(i) != -1) {			        	
+				        	res += V.get(i);			        			
+				        	if (i < V.size() - 1) res += ", "; 
+			        	} else res += " совпадений не найдено ";
 			        }
 			        
 			        res += "]\n\n";
@@ -92,7 +104,7 @@ public class MainClass {
 	        }
 	        
 	        //-----------------------------------------------------------//
-        	System.out.print("\n>> Результат > ");
+        	System.out.print("\n> Результат > ");
 	        System.out.println(res);
 	        
 		}

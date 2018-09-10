@@ -4,15 +4,20 @@ import java.util.Vector;
 
 public class KMP {
 
-	public static String run(String S) {
+	public static Vector<Integer> run(String S,  String T) {
 		
-		int res[] = prefixFunction(S);
+		int prefixes[] = prefixFunction(T + "¶" + S);		
+		Vector<Integer> res = new Vector<>();
 		
-		for (int i = 0; i < res.length; i++) {
-			System.out.println(res[i]);
+		for (int i = 0; i < prefixes.length; i++) {			
+			if (prefixes[i] == T.length()) {
+				res.add(i - 2 * T.length());
+			}			
 		}
 		
-		return "KMP";
+		if (res.isEmpty()) res.add(-1);
+		
+		return res;
 		
 	}
 	

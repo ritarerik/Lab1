@@ -30,9 +30,7 @@ public class RK {
 
 		}
 		
-		if (res.isEmpty()) {
-			res.add(-1);
-		}
+		if (res.isEmpty()) res.add(-1);
 		
 		return res;
 		
