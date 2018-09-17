@@ -8,55 +8,46 @@ public class RK {
 		
 		Vector<Integer> res = new Vector<>();
 		
-		int len = T.length();
+		int len = T.length(); 							// длина искомой подстроки 
 		
 		String text = "";
-		int textHash = 0;
-		int subHash = getHash(S, T, 0, 0, 0);		
+		int textHash = 0; 								// хэш подстроки исходной строки
+		int subHash = getHash(S, T);					// хэш искомой строки	
 		
 		for (int i = -1; i < S.length() - len; i++) {
 			
-			text = S.substring(i + 1, i + len + 1);
-			textHash = getHash(S, text, textHash, i, i + len);
+			text = S.substring(i + 1, i + len + 1);		
+			textHash = getHash(S, text);
 			
+			// если хеши совпали, то посимвольное сравнение
 			if (subHash == textHash) {				
 				boolean equal = true;
 				if (!T.equals(text)) {
 					equal = false;
 					break;
-				}				
+				}
+				// если посимвольно подстроки совпали, то добавляем позицию в массив
 				if (equal) res.add(i + 1);				
 			}
 
 		}
 		
+		// если совпадений не найдено, то возращение позиции -1
 		if (res.isEmpty()) res.add(-1);
 		
 		return res;
 		
 	}
 	
-	private static int getHash(String S, String sub, int prevHash, int i_1, int i_2) {
+	private static int getHash(String S, String sub) {
 		
-		int d = 52;
-		int q = 65713; // простое число	( 65713	)
+		int q = 65713; // простое число
 		int hash = 0;		
 		
-//		if (prevHash == 0) { // вычисляем первый хэш
-			
-			for (int i = 0; i < sub.length(); i++) {			
-				hash += (((int) sub.charAt(i)) * Math.pow(2, sub.length() - i - 1)) % q;			
-			}
-			
-//		} else { // вычисляем последующие окна
-//			
-//			char c = S.charAt(i_1);
-//			char c_ = S.charAt(i_2);
-//			//hash = prevHash - (int)S.charAt(i_1) + (int)S.charAt(i_2);
-//			
-//			hash = (int)((prevHash - (int)S.charAt(i_1)) + (int)S.charAt(i_2) * Math.pow(2, sub.length() - 1)) % q;
-//			
-//		}
+		// вычисление полиномиального хеша
+		for (int i = 0; i < sub.length(); i++) {			
+			hash += (((int) sub.charAt(i)) * Math.pow(2, sub.length() - i - 1)) % q;			
+		}
 		
 		return hash;
 		
