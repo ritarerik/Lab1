@@ -19,7 +19,7 @@ public class RK {
 			text = S.substring(i + 1, i + len + 1);		
 			textHash = getHash(S, text);
 			
-			// если хеши совпали, то посимвольное сравнение
+			// если хеши совпали, то посимвольное сравнение строк
 			if (subHash == textHash) {				
 				boolean equal = true;
 				if (!T.equals(text)) {
