@@ -29,7 +29,7 @@ public class KMP {
 	public static int[] prefixFunction(String S) {
 		
 		int res[] = new int[S.length()];
-		for (int i : res) i = 0; // заполнение нулями
+		//for (int i : res) i = 0; // заполнение нулями
 		
 		for (int i = 1; i < S.length(); i++) {
 			

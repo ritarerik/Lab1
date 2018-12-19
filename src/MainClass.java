@@ -49,8 +49,8 @@ public class MainClass {
 			        	if (i < Z.length - 1) res += ", "; 
 			        }
 			        res += "]\n\n";
-		        	
-		        	break;
+			        
+			        break;
 		        	
 		        //-----------------------------------------------------------//	
 		        case 2:
@@ -75,7 +75,8 @@ public class MainClass {
 				        }				        
 				        res += "]\n\n";				        
 			        }
-		        	break;
+			        
+			        break;
 		        	
 		       	//-----------------------------------------------------------//	
 		        case 3:
@@ -95,7 +96,7 @@ public class MainClass {
 			        }
 			        
 			        res += "]\n\n";
-		        	break;
+			        break;
 		        	
 		        default:
 		        	exit = true;
